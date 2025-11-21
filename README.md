@@ -8,11 +8,15 @@ A cute pixel art game where you control a bunny to collect carrots and avoid roc
 - **Goal**: Collect Carrots 🥕 to score points. Avoid Rocks 🪨!
 
 ## Deployment to GitHub Pages
-1. Push this repository to GitHub.
-2. Go to **Settings** > **Pages**.
-3. Select the `main` branch as the source.
-4. Save and wait for the deployment to finish.
-5. Enjoy your game!
+1. **Repository**: [https://github.com/pm430/bunny-hop](https://github.com/pm430/bunny-hop)
+2. **Play Here**: [https://pm430.github.io/bunny-hop/](https://pm430.github.io/bunny-hop/)
+
+### Deployment Status
+The code has been pushed to the `main` branch.
+To enable the game:
+1. Go to **Settings** > **Pages** in your GitHub repository.
+2. Under **Build and deployment** > **Branch**, select `main` and click **Save**.
+3. Wait a moment, and the game will be live at the link above!
 
 ## Credits
 - Game Engine: Custom HTML5 Canvas
