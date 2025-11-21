@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bunny Hop</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Bunny Hop</h1>
+        <canvas id="gameCanvas" width="400" height="600"></canvas>
+        <div id="ui-layer">
+            <div id="score">Score: 0</div>
+            <div id="start-screen">
+                <p>Press SPACE to Start</p>
+                <p class="controls">Use Arrow Keys to Move</p>
+            </div>
+            <div id="game-over-screen" class="hidden">
+                <p>Game Over!</p>
+                <p id="final-score">Score: 0</p>
+                <p class="restart-msg">Press SPACE to Restart</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
