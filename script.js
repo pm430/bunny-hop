@@ -36,7 +36,7 @@ function playTone(freq, type, duration) {
 // Game State
 let gameRunning = false;
 let score = 0;
-let highScore = localStorage.getItem('bunnyHopHighScore') || 0;
+let highScore = parseInt(localStorage.getItem('bunnyHopHighScore')) || 0;
 let animationId;
 
 // Game Objects
@@ -72,6 +72,37 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('keyup', (e) => {
     keys[e.code] = false;
 });
+
+// Touch Handling
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const touchX = e.touches[0].clientX;
+    const canvasRect = canvas.getBoundingClientRect();
+    const relativeX = touchX - canvasRect.left;
+
+    if (!gameRunning) {
+        if (document.getElementById('game-over-screen').classList.contains('hidden') === false) {
+            startGame();
+        } else if (!document.getElementById('start-screen').classList.contains('hidden')) {
+            startGame();
+        }
+        return;
+    }
+
+    if (relativeX < canvasRect.width / 2) {
+        keys['ArrowLeft'] = true;
+        keys['ArrowRight'] = false;
+    } else {
+        keys['ArrowRight'] = true;
+        keys['ArrowLeft'] = false;
+    }
+}, { passive: false });
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    keys['ArrowLeft'] = false;
+    keys['ArrowRight'] = false;
+}, { passive: false });
 
 function createParticles(x, y, color) {
     for (let i = 0; i < 8; i++) {
