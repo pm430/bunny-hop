@@ -9,9 +9,34 @@ carrotImg.src = 'carrot.png';
 const rockImg = new Image();
 rockImg.src = 'rock.png';
 
+// Audio Context
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioCtx = new AudioContext();
+
+const sounds = {
+    jump: () => playTone(400, 'square', 0.1),
+    collect: () => playTone(800, 'sine', 0.1),
+    gameOver: () => playTone(150, 'sawtooth', 0.5)
+};
+
+function playTone(freq, type, duration) {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+}
+
 // Game State
 let gameRunning = false;
 let score = 0;
+let highScore = localStorage.getItem('bunnyHopHighScore') || 0;
 let animationId;
 
 // Game Objects
@@ -25,6 +50,7 @@ const bunny = {
 };
 
 const items = []; // Carrots and Rocks
+const particles = []; // Particle effects
 const itemSpeed = 3;
 const spawnRate = 60; // Frames
 let frameCount = 0;
@@ -47,12 +73,46 @@ document.addEventListener('keyup', (e) => {
     keys[e.code] = false;
 });
 
+function createParticles(x, y, color) {
+    for (let i = 0; i < 8; i++) {
+        particles.push({
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 4,
+            vy: (Math.random() - 0.5) * 4,
+            life: 1.0,
+            color: color
+        });
+    }
+}
+
+function updateParticles() {
+    for (let i = particles.length - 1; i >= 0; i--) {
+        particles[i].x += particles[i].vx;
+        particles[i].y += particles[i].vy;
+        particles[i].life -= 0.05;
+        if (particles[i].life <= 0) {
+            particles.splice(i, 1);
+        }
+    }
+}
+
+function drawParticles() {
+    particles.forEach(p => {
+        ctx.globalAlpha = p.life;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(p.x, p.y, 4, 4);
+        ctx.globalAlpha = 1.0;
+    });
+}
+
 function startGame() {
     if (gameRunning) return;
 
     // Reset
     score = 0;
     items.length = 0;
+    particles.length = 0;
     bunny.x = canvas.width / 2 - 16;
     gameRunning = true;
 
@@ -60,6 +120,9 @@ function startGame() {
     document.getElementById('start-screen').classList.add('hidden');
     document.getElementById('game-over-screen').classList.add('hidden');
     document.getElementById('score').innerText = `Score: ${score}`;
+    document.getElementById('high-score').innerText = `High Score: ${highScore}`;
+
+    if (audioCtx.state === 'suspended') audioCtx.resume();
 
     animate();
 }
@@ -67,8 +130,16 @@ function startGame() {
 function gameOver() {
     gameRunning = false;
     cancelAnimationFrame(animationId);
+    sounds.gameOver();
+
+    if (score > highScore) {
+        highScore = score;
+        localStorage.setItem('bunnyHopHighScore', highScore);
+    }
+
     document.getElementById('game-over-screen').classList.remove('hidden');
     document.getElementById('final-score').innerText = `Score: ${score}`;
+    document.getElementById('final-high-score').innerText = `High Score: ${highScore}`;
 }
 
 function update() {
@@ -105,6 +176,8 @@ function update() {
         });
     }
 
+    updateParticles();
+
     // Update Items
     for (let i = items.length - 1; i >= 0; i--) {
         items[i].y += items[i].speed;
@@ -119,8 +192,11 @@ function update() {
             if (items[i].type === 'carrot') {
                 score += 10;
                 document.getElementById('score').innerText = `Score: ${score}`;
+                createParticles(items[i].x + 16, items[i].y + 16, '#ffa500');
+                sounds.collect();
                 items.splice(i, 1);
             } else {
+                createParticles(bunny.x + 16, bunny.y + 16, '#ff0000');
                 gameOver();
             }
             continue;
@@ -146,6 +222,8 @@ function draw() {
     items.forEach(item => {
         ctx.drawImage(item.img, item.x, item.y, item.width, item.height);
     });
+
+    drawParticles();
 }
 
 function animate() {

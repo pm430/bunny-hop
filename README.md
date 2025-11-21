@@ -7,6 +7,13 @@ A cute pixel art game where you control a bunny to collect carrots and avoid roc
 - **Space**: Start / Restart Game
 - **Goal**: Collect Carrots 🥕 to score points. Avoid Rocks 🪨!
 
+## Features
+- **Pixel Art Graphics**: Custom generated assets.
+- **High Score System**: Saves your best score locally.
+- **Sound Effects**: Retro synthesized sounds.
+- **Particle Effects**: Cute confetti when collecting items.
+- **Support**: [Buy Me a Coffee](https://buymeacoffee.com/pm430)
+
 ## Deployment to GitHub Pages
 1. **Repository**: [https://github.com/pm430/bunny-hop](https://github.com/pm430/bunny-hop)
 2. **Play Here**: [https://pm430.github.io/bunny-hop/](https://pm430.github.io/bunny-hop/)
