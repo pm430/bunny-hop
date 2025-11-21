@@ -163,8 +163,15 @@ function update() {
 
     // Spawn Items
     frameCount++;
-    if (frameCount % spawnRate === 0) {
-        const isCarrot = Math.random() > 0.3; // 70% carrots, 30% rocks
+
+    // Dynamic Spawn Rate: Starts at 60, decreases to 20 as score increases
+    const currentSpawnRate = Math.max(20, 60 - Math.floor(score / 50));
+
+    if (frameCount % currentSpawnRate === 0) {
+        // Dynamic Rock Ratio: Starts at 30%, increases to 60%
+        const rockChance = Math.min(0.6, 0.3 + (score / 500));
+        const isCarrot = Math.random() > rockChance;
+
         items.push({
             x: Math.random() * (canvas.width - 32),
             y: -32,
@@ -172,7 +179,8 @@ function update() {
             height: 32,
             type: isCarrot ? 'carrot' : 'rock',
             img: isCarrot ? carrotImg : rockImg,
-            speed: itemSpeed + (score / 100) // Increase speed with score
+            // Aggressive Speed Scaling: Base 3 + (Score / 40)
+            speed: itemSpeed + (score / 40)
         });
     }
 
