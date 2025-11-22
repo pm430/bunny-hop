@@ -3,11 +3,11 @@ const ctx = canvas.getContext('2d');
 
 // Load Images
 const bunnyImg = new Image();
-bunnyImg.src = 'bunny.png';
+bunnyImg.src = 'bunny.svg';
 const carrotImg = new Image();
-carrotImg.src = 'carrot.png';
+carrotImg.src = 'carrot.svg';
 const rockImg = new Image();
-rockImg.src = 'rock.png';
+rockImg.src = 'rock.svg';
 
 // Audio Context
 const AudioContext = window.AudioContext || window.webkitAudioContext;
