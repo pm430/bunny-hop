@@ -28,9 +28,9 @@ h1 {
 }
 
 canvas {
-    /* Pixel Art Background with White Overlay for Contrast */
+    /* Pixel Art Background with Dark Overlay for Contrast */
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
         url('background.png');
     background-size: cover;
     background-position: center;
