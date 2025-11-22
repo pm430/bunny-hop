@@ -1,5 +1,10 @@
 body {
     background-color: #87ceeb;
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     /* Sky Blue */
     display: flex;
     justify-content: center;
@@ -25,9 +30,9 @@ h1 {
 }
 
 canvas {
-    /* Pixel Art Background with Dark Overlay for Contrast */
+    /* Pixel Art Background with Dark Overlay for Strong Contrast */
     background-image:
-        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
         url('background.png');
     background-size: cover;
     background-position: center;
