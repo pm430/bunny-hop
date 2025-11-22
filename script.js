@@ -60,6 +60,12 @@ const keys = {};
 
 document.addEventListener('keydown', (e) => {
     keys[e.code] = true;
+
+    // Prevent arrow keys from scrolling the page
+    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Space'].includes(e.code)) {
+        e.preventDefault();
+    }
+
     if (e.code === 'Space') {
         if (!gameRunning) {
             startGame();
