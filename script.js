@@ -45,7 +45,7 @@ const bunny = {
     y: canvas.height - 40,
     width: 32,
     height: 32,
-    speed: 5,
+    speed: 6,
     dx: 0
 };
 

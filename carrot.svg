@@ -3,8 +3,10 @@
     <path d="M16 2 L12 8 L20 8 Z" fill="#2ecc71"/>
     <rect x="14" y="6" width="4" height="4" fill="#2ecc71"/>
     
-    <!-- Orange Body -->
-    <path d="M10 10 L22 10 L16 30 Z" fill="#e67e22"/>
+    <!-- Orange Body with Rounded Tip -->
+    <!-- Changed L16 30 to Q16 32 16 30 (Curve) or just manually adjusting points for a rounded look -->
+    <!-- Using a path that curves at the bottom -->
+    <path d="M10 10 L22 10 L19 26 Q16 31 13 26 Z" fill="#e67e22"/>
     
     <!-- Detail Lines -->
     <rect x="12" y="14" width="6" height="2" fill="#d35400" opacity="0.5"/>
