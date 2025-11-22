@@ -281,13 +281,9 @@ function draw() {
     ctx.drawImage(bunnyImg, bunny.x, bunny.y + hopOffset, bunny.width, bunny.height);
 
     // Draw Items
-    ctx.save();
-    ctx.shadowBlur = 15;
-    ctx.shadowColor = "white";
     items.forEach(item => {
         ctx.drawImage(item.img, item.x, item.y, item.width, item.height);
     });
-    ctx.restore();
 
     drawParticles();
 }
