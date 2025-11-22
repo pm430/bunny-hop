@@ -74,6 +74,19 @@ document.addEventListener('keyup', (e) => {
 });
 
 // Touch Handling
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+if (isTouchDevice) {
+    // Update UI for Touch
+    const startMsg = document.querySelector('#start-screen p:first-child');
+    const controlsMsg = document.querySelector('#start-screen .controls');
+    const restartMsg = document.querySelector('.restart-msg');
+
+    if (startMsg) startMsg.innerText = "Tap to Start";
+    if (controlsMsg) controlsMsg.innerText = "Tap Left/Right to Move";
+    if (restartMsg) restartMsg.innerText = "Tap to Restart";
+}
+
 canvas.addEventListener('touchstart', (e) => {
     e.preventDefault();
     const touchX = e.touches[0].clientX;
