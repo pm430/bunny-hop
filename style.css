@@ -24,13 +24,11 @@ h1 {
 }
 
 canvas {
-    /* SkyBlue Gradient with Clouds Pattern */
-    background: linear-gradient(to bottom, #87ceeb 0%, #b0e0e6 100%);
-    background-image:
-        radial-gradient(circle 20px at 10% 20%, rgba(255, 255, 255, 0.4) 50%, transparent 50%),
-        radial-gradient(circle 30px at 80% 40%, rgba(255, 255, 255, 0.4) 50%, transparent 50%),
-        radial-gradient(circle 15px at 40% 70%, rgba(255, 255, 255, 0.4) 50%, transparent 50%);
-    background-size: 100% 100%;
+    /* Pixel Art Background */
+    background-image: url('background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 
     border: 4px solid #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
