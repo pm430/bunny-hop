@@ -1,11 +1,6 @@
 body {
-    background-color: #f0f8ff;
-    background-image: url('background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    /* AliceBlue */
+    background-color: #87ceeb;
+    /* Sky Blue */
     display: flex;
     justify-content: center;
     align-items: center;
