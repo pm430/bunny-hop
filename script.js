@@ -163,8 +163,10 @@ function startGame() {
     // UI
     document.getElementById('start-screen').classList.add('hidden');
     document.getElementById('game-over-screen').classList.add('hidden');
+
+    const highScoreLabel = isTouchDevice ? 'Best' : 'High Score';
     document.getElementById('score').innerText = `Score: ${score}`;
-    document.getElementById('high-score').innerText = `High Score: ${highScore}`;
+    document.getElementById('high-score').innerText = `${highScoreLabel}: ${highScore}`;
 
     if (audioCtx.state === 'suspended') audioCtx.resume();
 
@@ -181,9 +183,11 @@ function gameOver() {
         localStorage.setItem('bunnyHopHighScore', highScore);
     }
 
+    const highScoreLabel = isTouchDevice ? 'Best' : 'High Score';
+
     document.getElementById('game-over-screen').classList.remove('hidden');
     document.getElementById('final-score').innerText = `Score: ${score}`;
-    document.getElementById('final-high-score').innerText = `High Score: ${highScore}`;
+    document.getElementById('final-high-score').innerText = `${highScoreLabel}: ${highScore}`;
 }
 
 function update() {
